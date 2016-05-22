@@ -361,9 +361,12 @@ textarea {
   -webkit-appearance: none;
 }
 .wrapper {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
   background-color: azure;
   width: 100%;
   height: 100%;
