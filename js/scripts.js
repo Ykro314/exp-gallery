@@ -2,6 +2,7 @@ var elements = document.querySelectorAll( ".wrapper__el" );
 var wrapper = document.querySelector( ".wrapper" );
 var overlay = document.querySelector( ".overlay" ); 
 var closeBtn = document.querySelector( ".overlay__close-btn" );
+var overlayContent = overlay.querySelectorAll( ".overlay--animate" );
 
 var activeImage = null;
 
@@ -12,6 +13,15 @@ wrapper.addEventListener( "click", function( event ) {
     showImage( event );
   }
 });
+
+function animateOvelayContent( delay ) {
+  delay = delay || 0;
+  setTimeout( function() {
+    for( var i = 0; i < overlayContent.length; i++ ) {
+      overlayContent[i].classList.toggle( "animate" );
+    }
+  }, delay );
+}
 
 function showImage( event ) {
   var el = event.target;
@@ -39,6 +49,7 @@ function showImage( event ) {
     overlay.classList.add( "showed" );
     setTimeout( function() {
       overlay.classList.add( "color" );
+      animateOvelayContent( 300 );
     }, 100);
 //    overlay.addEventListener( "transitionend", denyBodyOverflow);
     
@@ -52,6 +63,7 @@ function showImage( event ) {
   hideOtherImages( el );
   transformCheckedImage();
   showOverlay();
+//  animateOvelayContent();
 }
 
 
@@ -94,6 +106,7 @@ function showGallery( event ) {
 //  restoreBodyOverflow();
   hideOverlay();
   hideCheckedImage( activeImage );
+  animateOvelayContent();
 }
 
 
@@ -101,6 +114,24 @@ function showGallery( event ) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 function doThings( event ) {
   var el = event.target;
   var coords = el.getBoundingClientRect();
@@ -156,3 +187,4 @@ function doThings( event ) {
   
   console.log( coords );
 }
+*/
