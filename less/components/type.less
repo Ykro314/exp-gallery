@@ -21,60 +21,57 @@ body {
     background-size: cover;
     background-position: center center;
     opacity: 1;
+    cursor: pointer; 
 
     &:nth-child(1) {
       background-color: red;
-      background-image: url(/graph/img/1.jpg);
+      background-image: url(../graph/img/1.jpg);
     }
     &:nth-child(2) {
       background-color: green;
-      background-image: url(/graph/img/2.jpg);
+      background-image: url(../graph/img/2.jpg);
     }
     &:nth-child(3) {
       background-color: yellow;
-      background-image: url(/graph/img/12.jpg);
+      background-image: url(../graph/img/12.jpg);
     }
     &:nth-child(4) {
       background-color: aqua;
-      background-image: url(/graph/img/3.jpg);
+      background-image: url(../graph/img/3.jpg);
     }
     &:nth-child(5) {
       background-color: blue;
-      background-image: url(/graph/img/4.jpg);
+      background-image: url(../graph/img/4.jpg);
     }
     &:nth-child(6) {
       background-color: brown;
-      background-image: url(/graph/img/5.jpg);
+      background-image: url(../graph/img/5.jpg);
     }
     &:nth-child(7) {
       background-color: violet;
-      background-image: url(/graph/img/6.jpg);
+      background-image: url(../graph/img/6.jpg);
     }
     &:nth-child(8) {
       background-color: black;
-      background-image: url(/graph/img/7.jpg);
+      background-image: url(../graph/img/7.jpg);
     }
     &:nth-child(9) {
       background-color: grey;
-      background-image: url(/graph/img/8.jpg);
+      background-image: url(../graph/img/8.jpg);
     }
     &:nth-child(10) {
       background-color: orange;
-      background-image: url(/graph/img/9.jpg);
+      background-image: url(../graph/img/9.jpg);
     }
     &:nth-child(11) {
       background-color: pink;
-      background-image: url(/graph/img/10.jpg);
+      background-image: url(../graph/img/10.jpg);
     }
     &:nth-child(12) {
       background-color: chartreuse;
-      background-image: url(/graph/img/11.jpg);
+      background-image: url(../graph/img/11.jpg);
     }
   } 
-}
-
-.active {
-//  transform: translate( 20px );
 }
 
 .overlay {
@@ -83,14 +80,56 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
   background-color: transparent;
   display: none;
   z-index: 5;
 //  opacity: 0;
   transition: all 0.6s;
+  &__close-btn {
+    position: fixed;
+    z-index: 20;
+    top: 22px;
+    right: 50px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 1;
+    &:before,
+    &:after {
+      position: absolute;
+      top: 3px;
+      left: ~"calc(50% - 2px)";
+      width: 3px; 
+      height: 25px;
+      content: "";
+      background: black;
+      transition: background 0.2s;
+    }
+    &:before { 
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+    &:hover:before,
+    &:hover:after {
+      background: white;
+    }
+  }
+  &__content {
+    width: 45%;
+    box-sizing: border-box;
+    color: black;
+    padding-right: 40px;
+    opacity: 0;
+  }
 }
+
+
 .showed { 
-  display: block;
+  display: flex;
 } 
 .color {
   background-color: #F2E394;
