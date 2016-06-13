@@ -23,51 +23,62 @@ body {
     opacity: 1;
     cursor: pointer; 
 
-    &:nth-child(1) {
+//    &:nth-child(1) {
+//      background-color: red;
+//      background-image: url(../graph/img/1.jpg);
+//    }
+    &[data-number="1"] {
       background-color: red;
       background-image: url(../graph/img/1.jpg);
     }
-    &:nth-child(2) {
+    &[data-number="2"] {
+      height: 500px;
       background-color: green;
       background-image: url(../graph/img/2.jpg);
     }
-    &:nth-child(3) {
+    &[data-number="3"] {
       background-color: yellow;
       background-image: url(../graph/img/12.jpg);
     }
-    &:nth-child(4) {
+    &[data-number="4"] { 
       background-color: aqua;
       background-image: url(../graph/img/3.jpg);
     }
-    &:nth-child(5) {
+    &[data-number="5"] {
+      width: 500px;
       background-color: blue;
       background-image: url(../graph/img/4.jpg);
     }
-    &:nth-child(6) {
+    &[data-number="6"] {
       background-color: brown;
       background-image: url(../graph/img/5.jpg);
     }
-    &:nth-child(7) {
+    &[data-number="7"] {
+      height: 500px;
       background-color: violet;
       background-image: url(../graph/img/6.jpg);
     }
-    &:nth-child(8) {
+    &[data-number="8"] {
       background-color: black;
       background-image: url(../graph/img/7.jpg);
     }
-    &:nth-child(9) {
+    &[data-number="9"] {
+      width: 700px;
       background-color: grey;
       background-image: url(../graph/img/8.jpg);
     }
-    &:nth-child(10) {
+    &[data-number="10"] {
       background-color: orange;
       background-image: url(../graph/img/9.jpg);
     }
-    &:nth-child(11) {
+    &[data-number="11"] {
+      height: 600px;
       background-color: pink;
       background-image: url(../graph/img/10.jpg);
     }
-    &:nth-child(12) {
+    &[data-number="12"] {
+      width: 600px;
+      height: 600px;
       background-color: chartreuse;
       background-image: url(../graph/img/11.jpg);
     }
@@ -87,6 +98,21 @@ body {
   z-index: 5;
 //  opacity: 0;
   transition: all 0.6s;
+  &__img-wrapper {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background: red;
+    height: 100%;
+  }
+  &__img {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  }
   &__close-btn {
     position: fixed;
     z-index: 20;

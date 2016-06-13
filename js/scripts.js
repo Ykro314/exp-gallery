@@ -26,10 +26,58 @@ function animateOvelayContent( delay ) {
 function showImage( event ) {
   var el = event.target;
   var coords = el.getBoundingClientRect();
+  console.log( coords );
   activeImage = el;
   
-  var translateString = "translate(" + ( -coords.left + 50 ) + "px," + ( -coords.top + 50 ) + "px)";
-  var scaleString = "scale(2.3)";
+//  var translateString = "translate(" + ( -coords.left + 50 ) + "px," + ( -coords.top + 50 ) + "px)";
+  var translateString = "translate(" + calculateTranslate( coords ).left + "px," + calculateTranslate( coords ).top + "px)";
+  var scaleString = "scale(" + calculateScaleSize( coords ) + ")";
+  
+  function clone( el, scale ) {
+    var clonedEl = el.cloneNode();
+    clonedEl.classList.add( "overlay__img" );
+    clonedEl.style.transform = "scale(" + scale + ")"
+    overlay.appendChild( clonedEl );
+    console.log( clonedEl );
+  }
+  
+  function calculateScaleSize( coords ) {
+    var width = coords.width;
+    var heignt = coords.height;
+    var scaleNumber;
+    if( width >= heignt ) {
+      var preferedWidth =( window.innerWidth / 2 ) - 50;
+      scaleNumber = preferedWidth / width;
+    }
+    else {
+      var preferedHeight = window.innerHeight - 100;
+      scaleNumber = preferedHeight / heignt;
+    }
+    return scaleNumber;
+  }
+  
+  function calculateTranslate( coords ) {
+    var width = coords.width;
+    var heignt = coords.height;
+    var scale = calculateScaleSize( coords );
+    var translateX, translateY, gap;
+    if( width >= heignt ) {
+      var heightAfterScaling = heignt * scale;
+      gap = ( window.innerHeight - heightAfterScaling ) / 2;
+      translateY = ( -coords.top + gap );
+      translateX = ( -coords.left + 50 );
+    }
+    else {
+      var widthAfterScaling = width * scale;
+      gap = ( ( window.innerWidth / 2 ) - widthAfterScaling ) / 2;
+      translateX = ( -coords.left + gap + 50 );
+      translateY = ( -coords.top + 50 );
+    }
+    return {
+      left: translateX,
+      top: translateY
+    }
+  }
   
   function hideOtherImages( el ) {
     for( var i = 0; i < elements.length; i++ ) {
@@ -42,19 +90,25 @@ function showImage( event ) {
     }
   }
   function transformCheckedImage() {
-    el.style.transform = translateString + scaleString;
+//    el.style.width = 45 + "vw";
+//    el.style.height = 90 + "vh";
     el.style.zIndex = 10;
+    el.style.transform = translateString + scaleString;
   }
   function showOverlay() {
     overlay.classList.add( "showed" );
     setTimeout( function() {
       overlay.classList.add( "color" );
-      animateOvelayContent( 300 );
+      animateOvelayContent( 400 );
     }, 100);
+    denyBodyOverflow();
 //    overlay.addEventListener( "transitionend", denyBodyOverflow);
-    
+//    setTimeout( function() {
+//      denyBodyOverflow();
+//    },100)
     function denyBodyOverflow( event ) {
       document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
       document.body.style.paddingRight = "17px";
       this.removeEventListener( event.type, denyBodyOverflow );
     }
@@ -63,8 +117,13 @@ function showImage( event ) {
   hideOtherImages( el );
   transformCheckedImage();
   showOverlay();
+//  setTimeout( function() {
+//    clone( el, calculateScaleSize( coords ) );
+//  }, 200 );
 //  animateOvelayContent();
 }
+
+
 
 
 
@@ -89,9 +148,13 @@ function showGallery( event ) {
   }
   function hideOverlay() {
     overlay.classList.remove( "color" );
+//    var img = overlay.querySelector( ".overlay__img" );
+//    overlay.removeChild( img );
   }
   function hideCheckedImage( image ) {
     image.style.transform = "";
+    image.style.width = "";
+    image.style.height = "";
     image.addEventListener( "transitionend", onTransitionEnd );
     activeImage = null;
     
@@ -103,7 +166,9 @@ function showGallery( event ) {
   }
   
   showOtherImages();
-//  restoreBodyOverflow();
+  setTimeout( function() {
+    restoreBodyOverflow();
+  }, 200 );
   hideOverlay();
   hideCheckedImage( activeImage );
   animateOvelayContent();

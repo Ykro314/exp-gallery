@@ -384,51 +384,58 @@ textarea {
   opacity: 1;
   cursor: pointer;
 }
-.wrapper__el:nth-child(1) {
+.wrapper__el[data-number="1"] {
   background-color: red;
   background-image: url(../graph/img/1.jpg);
 }
-.wrapper__el:nth-child(2) {
+.wrapper__el[data-number="2"] {
+  height: 500px;
   background-color: green;
   background-image: url(../graph/img/2.jpg);
 }
-.wrapper__el:nth-child(3) {
+.wrapper__el[data-number="3"] {
   background-color: yellow;
   background-image: url(../graph/img/12.jpg);
 }
-.wrapper__el:nth-child(4) {
+.wrapper__el[data-number="4"] {
   background-color: aqua;
   background-image: url(../graph/img/3.jpg);
 }
-.wrapper__el:nth-child(5) {
+.wrapper__el[data-number="5"] {
+  width: 500px;
   background-color: blue;
   background-image: url(../graph/img/4.jpg);
 }
-.wrapper__el:nth-child(6) {
+.wrapper__el[data-number="6"] {
   background-color: brown;
   background-image: url(../graph/img/5.jpg);
 }
-.wrapper__el:nth-child(7) {
+.wrapper__el[data-number="7"] {
+  height: 500px;
   background-color: violet;
   background-image: url(../graph/img/6.jpg);
 }
-.wrapper__el:nth-child(8) {
+.wrapper__el[data-number="8"] {
   background-color: black;
   background-image: url(../graph/img/7.jpg);
 }
-.wrapper__el:nth-child(9) {
+.wrapper__el[data-number="9"] {
+  width: 700px;
   background-color: grey;
   background-image: url(../graph/img/8.jpg);
 }
-.wrapper__el:nth-child(10) {
+.wrapper__el[data-number="10"] {
   background-color: orange;
   background-image: url(../graph/img/9.jpg);
 }
-.wrapper__el:nth-child(11) {
+.wrapper__el[data-number="11"] {
+  height: 600px;
   background-color: pink;
   background-image: url(../graph/img/10.jpg);
 }
-.wrapper__el:nth-child(12) {
+.wrapper__el[data-number="12"] {
+  width: 600px;
+  height: 600px;
   background-color: chartreuse;
   background-image: url(../graph/img/11.jpg);
 }
@@ -444,6 +451,21 @@ textarea {
   display: none;
   z-index: 5;
   transition: all 0.6s;
+}
+.overlay__img-wrapper {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  background: red;
+  height: 100%;
+}
+.overlay__img {
+  position: absolute;
+  top: 50px;
+  left: 50px;
 }
 .overlay__close-btn {
   position: fixed;
